@@ -6,13 +6,13 @@
 /*   By: fdaryn-h <fdaryn-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:50:37 by fdaryn-h          #+#    #+#             */
-/*   Updated: 2019/02/04 19:50:37 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:09:17 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		check_block(const char *str)
+static int	check_block(const char *str)
 {
 	int hash;
 	int eol;
@@ -40,7 +40,7 @@ int		check_block(const char *str)
 	return (1);
 }
 
-void	cmp(const char *str, int i, int *sum)
+static void	cmp(const char *str, int i, int *sum)
 {
 	if (i > 0)
 	{
@@ -68,7 +68,7 @@ void	cmp(const char *str, int i, int *sum)
 	}
 }
 
-int		check_tetro(const char *str)
+static int	check_tetro(const char *str)
 {
 	int sum;
 	int i;
@@ -86,7 +86,7 @@ int		check_tetro(const char *str)
 	return (0);
 }
 
-int		check_file(char **buf, int fd, ssize_t *ret, int *counter)
+static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 {
 	if (!(check_block(*buf)) || !(check_tetro(*buf)))
 	{
@@ -114,7 +114,7 @@ int		check_file(char **buf, int fd, ssize_t *ret, int *counter)
 	return (1);
 }
 
-int		validate(char *file)
+int			validate(char *file)
 {
 	int		fd;
 	ssize_t	ret;
