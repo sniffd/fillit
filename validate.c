@@ -6,7 +6,7 @@
 /*   By: fdaryn-h <fdaryn-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:50:37 by fdaryn-h          #+#    #+#             */
-/*   Updated: 2019/02/04 20:09:17 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:55:20 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,11 @@ static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 		return (0);
 	}
 	free(*buf);
-	*buf = ft_memalloc(1);
-	read(fd, *buf, 1);
-	if (!((**buf == '\n') || (!(**buf))))
+	if (!(((*buf)[20] == '\n') || (!((*buf)[20]))))
 	{
 		free(*buf);
 		return (0);
 	}
-	free(*buf);
 	*buf = ft_memalloc(21);
 	*ret = read(fd, *buf, 20);
 	if (*ret)
@@ -118,22 +115,23 @@ int			validate(char *file)
 {
 	int		fd;
 	ssize_t	ret;
+	ssize_t oret;
 	char	*buf;
 	int		counter;
 
-	buf = ft_memalloc(21);
+	buf = ft_memalloc(22);
 	fd = open(file, O_RDONLY);
-	ret = read(fd, buf, 20);
+	ret = 1;
 	counter = 0;
-	if (ret)
-		counter++;
-	else
-	{
-		free(buf);
-		return (0);
-	}
 	while (ret)
 	{
+		oret = ret;
+		ret = read(fd, buf, 21);
+		if (oret == 21 && !ret)
+		{
+			free(buf);
+			return (0);
+		}
 		if (!(check_file(&buf, fd, &ret, &counter)))
 			return (0);
 	}
