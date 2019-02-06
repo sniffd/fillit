@@ -6,7 +6,7 @@
 /*   By: fdaryn-h <fdaryn-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:50:37 by fdaryn-h          #+#    #+#             */
-/*   Updated: 2019/02/06 17:55:20 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/06 22:04:39 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,8 @@ static int	check_tetro(const char *str)
 
 static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 {
-	if (!(check_block(*buf)) || !(check_tetro(*buf)))
-	{
-		free(*buf);
-		return (0);
-	}
-	free(*buf);
-	if (!(((*buf)[20] == '\n') || (!((*buf)[20]))))
+	if (!(check_block(*buf)) || !(check_tetro(*buf)) || !(((*buf)[20] == '\n')
+	|| (!((*buf)[20]))))
 	{
 		free(*buf);
 		return (0);
