@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 18:04:29 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/07 07:37:47 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/07 20:36:27 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,53 @@ char	get_name_v(char *str, int *o)
 		return ('Z');
 }
 
-//int get_tetros(char *file)
-//{
-//	int		fd;
-//	char	buf[22];
-//
-//	fd = open(file, O_RDONLY);
-//	while (read(fd, buf, 21))
-//	{
-//
-//	}
-//}
+t_tr	*get_tetros(char *file)
+{
+	int		fd;
+	char	l;
+	char	buf[22];
+	t_tr	*list;
+	t_tr	*prev;
+	t_tr	*next;
+	t_tr	*head;
+
+	fd = open(file, O_RDONLY);
+	list = 0;
+	prev = 0;
+	next = 0;
+	l = 'A';
+	head = 0;
+	while (read(fd, buf, 21))
+	{
+		if (l != 'A')
+		{
+			next = (t_tr *)ft_memalloc(sizeof(t_tr));
+			list->next = next;
+			list = list->next;
+		}
+		else
+			list = (t_tr *)ft_memalloc(sizeof(t_tr));
+		if (l == 'A')
+			head = list;
+		list->h = get_h(buf);
+		list->w = get_w(buf);
+		if (list->h == 2 && list->w == 2)
+			list->name = 'O';
+		else if (list->w == 1)
+			list->name = 'I';
+		else if (list->h == 1)
+		{
+			list->name = 'I';
+			list->o = 1;
+		}
+		else if (list->w == 2)
+			list->name = get_name_v(buf, &(list->o));
+		else
+			list->name = get_name_h(buf, &(list->o));
+		list->l = l;
+		list->prev = prev;
+		prev = list;
+		l++;
+	}
+	return (head);
+}
