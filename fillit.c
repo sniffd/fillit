@@ -25,7 +25,7 @@ int		get_w(const char *str)
 	{
 		if (str[i] == '#')
 		{
-			if (min_w < 0)
+			if (min_w < 0 || min_w > i % 5)
 				min_w = i % 5;
 			if (max_w < i % 5)
 				max_w = i % 5;
