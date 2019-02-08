@@ -6,7 +6,7 @@
 /*   By: fdaryn-h <fdaryn-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:50:37 by fdaryn-h          #+#    #+#             */
-/*   Updated: 2019/02/06 22:04:39 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:16:57 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_block(const char *str)
 			return (0);
 		i++;
 	}
-	if (hash != 4 || (eol < 3 || eol > 4))
+	if (hash != 4 || (eol < 3 || eol > 5))
 		return (0);
 	if (!(str[19] == '\n' || !(str[19])))
 		return (0);
@@ -95,7 +95,7 @@ static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 		return (0);
 	}
 	*buf = ft_memalloc(21);
-	*ret = read(fd, *buf, 20);
+	*ret = read(fd, *buf, 21);
 	if (*ret)
 		(*counter)++;
 	if (*counter > 26)

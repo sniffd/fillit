@@ -31,4 +31,5 @@ typedef struct	s_tr
 }				t_tr;
 
 int		validate(char *file);
+t_tr	*get_tetros(char *file);
 #endif
