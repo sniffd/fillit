@@ -6,7 +6,7 @@
 /*   By: fdaryn-h <fdaryn-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:50:37 by fdaryn-h          #+#    #+#             */
-/*   Updated: 2019/02/08 16:16:57 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:31:36 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 		free(*buf);
 		return (0);
 	}
-	*buf = ft_memalloc(21);
 	*ret = read(fd, *buf, 21);
 	if (*ret)
 		(*counter)++;
