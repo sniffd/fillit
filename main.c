@@ -5,31 +5,26 @@
 // 	if (map[x])
 // }
 
-char *solve(char *map, t_tr *list)
-{
-	while (list)
-	{
-		list = list->next;
-		printf("name:%c\n", list->name);
-	}
-	return (map);
-}
+// char *solve(char *map, t_tr *list)
+// {
+// 	while (list)
+// 	{
+// 		list = list->next;
+// 		printf("name:%c\n", list->name);
+// 	}
+// 	return (map);
+// }
 
 int count_tetr(t_tr *list)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
 	while (list)
 	{
 		list = list->next;
 		i++;
 	}
-	j = i;
-	while (j != 0)
-		list = list->prev;
 	return (i);
 }
 
@@ -72,7 +67,7 @@ char *map(t_tr *list)
 	while (map_size * map_size < size)
 		map_size++;
 	map = create_map(map_size);
-	map = solve(map, list);
+	//map = solve(map, list);
 	return (map);
 }
 
