@@ -5,17 +5,83 @@
 // 	if (map[x])
 // }
 
-// char *solve(char *map, t_tr *list)
-// {
-// 	while (list)
-// 	{
-// 		list = list->next;
-// 		printf("name:%c\n", list->name);
-// 	}
-// 	return (map);
-// }
 
-int count_tetr(t_tr *list)
+
+int	*get_coord_h(char n, int o)
+{
+	int a[4];
+
+	if (n == 'L' && o == 3 && (a[0] = 2) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
+		return (a);
+	if (n == 'J' && o == 3 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
+		return (a);
+	if (n == 'L' && o == 1 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
+		return (a);
+	if (n == 'J' && o == 1 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
+		return (a);
+	if (n == 'T' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 6))
+		return (a);
+	if (n == 'T' && o == 2 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
+		return (a);
+	if (n == 'S' && o == 0 && (a[0] = 1) && (a[1] = 2) && (a[2] = 5) && (a[3] = 6))
+		return (a);
+	if (n == 'Z' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 7))
+		return (a);
+	return (0);
+}
+
+int	*get_coord_v(char n, int o)
+{
+	int a[4];
+
+	if (n == 'L' && o == 0 && (a[0] = 0) && (a[1] = 5) && (a[2] = 10)
+		&& (a[3] = 11))
+		return (a);
+	if (n == 'J' && o == 0 && (a[0] = 1) && (a[1] = 6) && (a[2] = 10)
+		&& (a[3] = 11))
+		return (a);
+	if (n == 'L' && o == 2 && (a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 11))
+		return (a);
+	if (n == 'J' && o == 2 && (a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 10))
+		return (a);
+	if (n == 'T' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
+		return (a);
+	if (n == 'T' && o == 3 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
+		return (a);
+	if (n == 'S' && o == 1 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
+		return (a);
+	if (n == 'Z' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
+		return (a);
+	return (0);
+}
+
+int	*get_coord(char n, int o)
+{
+	int a[4];
+	int	*tmp;
+
+	if (n == 'O' && (a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 6))
+		return (a);
+	if (n == 'I' && o == 0 && (a[0] = 0) && (a[1] = 5) && (a[2] = 10)
+		&& (a[3] = 15))
+		return (a);
+	if (n == 'I' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 3))
+		return (a);
+	if ((tmp = get_coord_h(n, o)))
+		return (tmp);
+	return (get_coord_v(n, o));
+}
+
+char *solve(char *map, t_tr *list)
+{
+	while (list)
+	{
+		printf("name:%c\n", list->name);
+	}
+	return (map);
+}
+
+int		count_tetr(t_tr *list)
 {
 	int i;
 
@@ -28,26 +94,21 @@ int count_tetr(t_tr *list)
 	return (i);
 }
 
-char *create_map(int map_size)
+char	*create_map(int map_size)
 {
-	int i;
-	int w;
-	int eol;
-	char *map;
+	int		i;
+	size_t	size;
+	int		eol;
+	char	*map;
 
-	eol = map_size;
-	w = (map_size + 1) * map_size;
+	eol = map_size + 1;
+	size = (size_t)(eol * map_size);
 	i = 0;
-	map = (char*)ft_memalloc(w + 1);
-	map[i] = '.';
-	i++;
-	while (i < w - 1)
+	map = (char*)ft_memalloc(size + 1);
+	while (i < size - 1)
 	{
-		if (i % eol == 0)
-		{
-			eol = eol + map_size + 1;
+		if ((i + 1) % eol == 0)
 			map[i] = '\n';
-		}
 		else
 			map[i] = '.';
 		i++;
@@ -56,14 +117,14 @@ char *create_map(int map_size)
 	return (map);
 }
 
-char *map(t_tr *list)
+char	*map(t_tr *list)
 {
-	char *map;
-	int map_size;
-	int size;
+	char	*map;
+	int		map_size;
+	int		size;
 
 	map_size = 2;
-	size = (count_tetr(list) - 1) * 4;
+	size = (count_tetr(list)) * 4;
 	while (map_size * map_size < size)
 		map_size++;
 	map = create_map(map_size);
@@ -73,7 +134,7 @@ char *map(t_tr *list)
 
 int main(int argc, char **argv)
 {
-	t_tr *list;
+	t_tr	*list;
 
 	list = 0;
 	if (argc == 2)
@@ -81,7 +142,7 @@ int main(int argc, char **argv)
 		if(validate(argv[1]))
 		{
 			printf("GOOD\n");
-			list = get_tetros(argv[1]);
+			list = create_list(argv[1]);
 		}
 		//else
 		//	printf("error\n");
