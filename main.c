@@ -1,75 +1,83 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
+/*   Updated: 2019/02/15 13:59:10 by ldonnis          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-// int put_in(t_tr list)
-// {
-// 	if (map[x])
-// }
-
-
-
-int	*get_coord_h(char n, int o)
+int	*get_coord_h(char n, int o, int **mas)
 {
-	int a[4];
+	int *a;
 
+    a = *mas;
 	if (n == 'L' && o == 3 && (a[0] = 2) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
 		return (a);
-	if (n == 'J' && o == 3 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
+	if (n == 'J' && o == 3 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
 		return (a);
-	if (n == 'L' && o == 1 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
+	if (n == 'L' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
 		return (a);
-	if (n == 'J' && o == 1 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
+	if (n == 'J' && o == 1 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
 		return (a);
-	if (n == 'T' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 6))
+	if (n == 'T' && o == 0 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 6))
 		return (a);
 	if (n == 'T' && o == 2 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
 		return (a);
 	if (n == 'S' && o == 0 && (a[0] = 1) && (a[1] = 2) && (a[2] = 5) && (a[3] = 6))
 		return (a);
-	if (n == 'Z' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 7))
+	if (n == 'Z' && o == 0 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 7))
 		return (a);
 	return (0);
 }
 
-int	*get_coord_v(char n, int o)
+int	*get_coord_v(char n, int o, int **mas)
 {
-	int a[4];
+	int *a;
 
-	if (n == 'L' && o == 0 && (a[0] = 0) && (a[1] = 5) && (a[2] = 10)
+    a = *mas;
+	if (n == 'L' && o == 0 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 10)
 		&& (a[3] = 11))
 		return (a);
 	if (n == 'J' && o == 0 && (a[0] = 1) && (a[1] = 6) && (a[2] = 10)
 		&& (a[3] = 11))
 		return (a);
-	if (n == 'L' && o == 2 && (a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 11))
+	if (n == 'L' && o == 2 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 11))
 		return (a);
-	if (n == 'J' && o == 2 && (a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 10))
+	if (n == 'J' && o == 2 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 10))
 		return (a);
 	if (n == 'T' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
 		return (a);
-	if (n == 'T' && o == 3 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
+	if (n == 'T' && o == 3 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
 		return (a);
-	if (n == 'S' && o == 1 && (a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
+	if (n == 'S' && o == 1 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
 		return (a);
 	if (n == 'Z' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
 		return (a);
 	return (0);
 }
 
-int	*get_coord(char n, int o)
+int	*get_coord(char n, int o, int **mas)
 {
-	int a[4];
+	int *a;
 	int	*tmp;
 
-	if (n == 'O' && (a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 6))
+    a = *mas;
+	if (n == 'O' && !(a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 6))
 		return (a);
-	if (n == 'I' && o == 0 && (a[0] = 0) && (a[1] = 5) && (a[2] = 10)
+	if (n == 'I' && o == 0 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 10)
 		&& (a[3] = 15))
 		return (a);
-	if (n == 'I' && o == 0 && (a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 3))
+	if (n == 'I' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 3))
 		return (a);
-	if ((tmp = get_coord_h(n, o)))
+	if ((tmp = get_coord_h(n, o, mas)))
 		return (tmp);
-	return (get_coord_v(n, o));
+	return (get_coord_v(n, o, mas));
 }
 
 char *solve(char *map, t_tr *list)
@@ -96,7 +104,7 @@ int		count_tetr(t_tr *list)
 
 char	*create_map(int map_size)
 {
-	int		i;
+	size_t	i;
 	size_t	size;
 	int		eol;
 	char	*map;
@@ -135,6 +143,7 @@ char	*map(t_tr *list)
 int main(int argc, char **argv)
 {
 	t_tr	*list;
+    int *mas;
 
 	list = 0;
 	if (argc == 2)
@@ -146,7 +155,18 @@ int main(int argc, char **argv)
 		}
 		//else
 		//	printf("error\n");
-		printf("map:\n%s\n", map(list));
+		printf("map:\n%s\n\n", map(list));
+        mas = (int*)ft_memalloc(sizeof(int) * 4);
+        while(list)
+        {
+            //printf("mas:%s\n", get_coord(list->name, list->o, &mas));
+            get_coord(list->name, list->o, &mas);
+            printf("%d\n", mas[0]);
+            printf("%d\n", mas[1]);
+            printf("%d\n", mas[2]);
+            printf("%d\n\n", mas[3]);
+            list = list->next;
+        }
 		// while (list)
 		// {
 		// 	printf("name:%c\n", list->name);
