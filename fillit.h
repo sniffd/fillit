@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:49:17 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/09 06:51:34 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 04:43:52 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_tr
 	int			h;
 	int			w;
 	int			o;
+	int			i;
 	struct s_tr	*next;
 	struct s_tr	*prev;
 	struct s_tr	*head;

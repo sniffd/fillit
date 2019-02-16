@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/15 13:59:10 by ldonnis          ###   ########.fr       */
+/*   Updated: 2019/02/16 04:58:38 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,27 +125,62 @@ char	*create_map(int map_size)
 	return (map);
 }
 
-char	*map(t_tr *list)
+char	*map(t_tr *list, int s)
 {
-	char	*map;
 	int		map_size;
 	int		size;
 
-	map_size = 2;
+	if (!s)
+		map_size = 2;
+	else
+		map_size = s;
 	size = (count_tetr(list)) * 4;
 	while (map_size * map_size < size)
 		map_size++;
-	map = create_map(map_size);
-	//map = solve(map, list);
-	return (map);
+	return (create_map(map_size));
+}
+
+int	check_and_place(t_tr *list, int *c, char **m, int i)//TODO запилить проверку на out of range
+{
+	size_t	size;
+
+	size = ft_strchr(*m, '\n') - *m + 1;
+	if ((c[3] / 5 * size) + (c[3] % 5) + i < ft_strlen(*m) &&
+	(*m)[(c[0] / 5 * size) + (c[0] % 5) + i] == '.' &&
+	(*m)[(c[1] / 5 * size) + (c[1] % 5) + i] == '.' &&
+	(*m)[(c[2] / 5 * size) + (c[2] % 5) + i] == '.' &&
+	(*m)[(c[3] / 5 * size) + (c[3] % 5) + i] == '.')
+	{
+		(*m)[(c[0] / 5 * size) + (c[0] % 5) + i] = list->l;
+		(*m)[(c[1] / 5 * size) + (c[1] % 5) + i] = list->l;
+		(*m)[(c[2] / 5 * size) + (c[2] % 5) + i] = list->l;
+		(*m)[(c[3] / 5 * size) + (c[3] % 5) + i] = list->l;
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void	replace(t_tr *list, int *c, char **m, int i)
+{
+	size_t	size;
+
+	size = ft_strchr(*m, '\n') - *m + 1;
+	(*m)[(c[0] / 5 * size) + (c[0] % 5) + i] = '.';
+	(*m)[(c[1] / 5 * size) + (c[1] % 5) + i] = '.';
+	(*m)[(c[2] / 5 * size) + (c[2] % 5) + i] = '.';
+	(*m)[(c[3] / 5 * size) + (c[3] % 5) + i] = '.';
 }
 
 int main(int argc, char **argv)
 {
 	t_tr	*list;
-    int *mas;
+    int *c;
+    int j;
+    char *m;
 
 	list = 0;
+	j = 0;
 	if (argc == 2)
 	{
 		if(validate(argv[1]))
@@ -155,18 +190,41 @@ int main(int argc, char **argv)
 		}
 		//else
 		//	printf("error\n");
-		printf("map:\n%s\n\n", map(list));
-        mas = (int*)ft_memalloc(sizeof(int) * 4);
-        while(list)
+		//printf("map:\n%s\n\n", map(list));
+		m = map(list, 0);
+        c = (int*)ft_memalloc(sizeof(int) * 4);
+		while(list && list->i < 100)
         {
-            //printf("mas:%s\n", get_coord(list->name, list->o, &mas));
-            get_coord(list->name, list->o, &mas);
-            printf("%d\n", mas[0]);
-            printf("%d\n", mas[1]);
-            printf("%d\n", mas[2]);
-            printf("%d\n\n", mas[3]);
-            list = list->next;
-        }
+			get_coord(list->name, list->o, &c);
+			if (check_and_place(list, c, &m, list->i))
+				list = list->next;
+			else if ((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) + (c[3] % 5) + list->i > ft_strlen(m))
+			{
+				if (list->prev)
+				{
+					list = list->prev;
+					get_coord(list->name, list->o, &c);
+					replace(list, c, &m, list->i);
+					(list->i)++;
+				}
+				else
+				{
+					free(m);
+					m = map(list->head, (ft_strchr(m, '\n') - m + 2));
+					list = list->head;
+					while (list->next)
+					{
+						list->i = 0;
+						list = list->next;
+					}
+					list = list->head;
+					list->i = 0;
+				}
+			}
+			else
+				(list->i)++;
+		}
+		printf("%s\n\n", m);
 		// while (list)
 		// {
 		// 	printf("name:%c\n", list->name);
