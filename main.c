@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/17 02:03:21 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/17 02:04:55 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ int		main(int argc, char **argv)
 	t_tr	*list;
 	char	*m;
 
-	list = 0;
+	m = 0;
 	if (argc == 2)
 	{
 		if (validate(argv[1]))
