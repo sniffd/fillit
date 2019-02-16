@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 05:14:46 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 05:55:58 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*get_coord_h(char n, int o, int **mas)
 		return (a);
 	if (n == 'J' && o == 3 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
 		return (a);
-	if (n == 'L' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
+	if (n == 'L' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 5))
 		return (a);
 	if (n == 'J' && o == 1 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
 		return (a);
@@ -190,7 +190,7 @@ int main(int argc, char **argv)
 		}
 		m = map(list, 0);
         c = (int*)ft_memalloc(sizeof(int) * 4);
-		while(list && list->i < 100)
+		while(list)
         {
 			get_coord(list->name, list->o, &c);
 			if (check_and_place(list, c, &m, list->i))
@@ -199,6 +199,7 @@ int main(int argc, char **argv)
 			{
 				if (list->prev)
 				{
+					list->i = 0;
 					list = list->prev;
 					get_coord(list->name, list->o, &c);
 					replace(c, &m, list->i);
