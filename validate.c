@@ -94,6 +94,8 @@ static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 		free(*buf);
 		return (0);
 	}
+	if (*ret)
+		(*counter)++;
 	*ret = read(fd, *buf, 21);
 	(*buf)[*ret] = '\0';
 	if (*ret)

@@ -6,87 +6,82 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 06:13:47 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/17 02:03:21 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	*get_coord_h(char n, int o, int **mas)
+void	fill(char *str, int **c)
 {
-	int *a;
+	char	*num;
+	int		i;
+	int		index;
 
-    a = *mas;
-	if (n == 'L' && o == 3 && (a[0] = 2) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
-		return (a);
-	if (n == 'J' && o == 3 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 7))
-		return (a);
-	if (n == 'L' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 5))
-		return (a);
-	if (n == 'J' && o == 1 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
-		return (a);
-	if (n == 'T' && o == 0 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 6))
-		return (a);
-	if (n == 'T' && o == 2 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 7))
-		return (a);
-	if (n == 'S' && o == 0 && (a[0] = 1) && (a[1] = 2) && (a[2] = 5) && (a[3] = 6))
-		return (a);
-	if (n == 'Z' && o == 0 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 7))
-		return (a);
-	return (0);
-}
-
-int	*get_coord_v(char n, int o, int **mas)
-{
-	int *a;
-
-    a = *mas;
-	if (n == 'L' && o == 0 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 10)
-		&& (a[3] = 11))
-		return (a);
-	if (n == 'J' && o == 0 && (a[0] = 1) && (a[1] = 6) && (a[2] = 10)
-		&& (a[3] = 11))
-		return (a);
-	if (n == 'L' && o == 2 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 6) && (a[3] = 11))
-		return (a);
-	if (n == 'J' && o == 2 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 10))
-		return (a);
-	if (n == 'T' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
-		return (a);
-	if (n == 'T' && o == 3 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
-		return (a);
-	if (n == 'S' && o == 1 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 6) && (a[3] = 11))
-		return (a);
-	if (n == 'Z' && o == 1 && (a[0] = 1) && (a[1] = 5) && (a[2] = 6) && (a[3] = 10))
-		return (a);
-	return (0);
-}
-
-int	*get_coord(char n, int o, int **mas)
-{
-	int *a;
-	int	*tmp;
-
-    a = *mas;
-	if (n == 'O' && !(a[0] = 0) && (a[1] = 1) && (a[2] = 5) && (a[3] = 6))
-		return (a);
-	if (n == 'I' && o == 0 && !(a[0] = 0) && (a[1] = 5) && (a[2] = 10)
-		&& (a[3] = 15))
-		return (a);
-	if (n == 'I' && o == 1 && !(a[0] = 0) && (a[1] = 1) && (a[2] = 2) && (a[3] = 3))
-		return (a);
-	if ((tmp = get_coord_h(n, o, mas)))
-		return (tmp);
-	return (get_coord_v(n, o, mas));
-}
-
-char *solve(char *map, t_tr *list)
-{
-	while (list)
+	i = 0;
+	index = 0;
+	num = "0123456789ABCDEF";
+	while (*str)
 	{
-		printf("name:%c\n", list->name);
+		while (num[i] != *str)
+			i++;
+		(*c)[index] = i;
+		index++;
+		str++;
+		i = 0;
 	}
-	return (map);
+}
+
+void	get_coord_h(char n, int o, int **mas)
+{
+	if (n == 'L' && o == 3)
+		fill("2567", mas);
+	if (n == 'J' && o == 3)
+		fill("0127", mas);
+	if (n == 'L' && o == 1)
+		fill("0125", mas);
+	if (n == 'J' && o == 1)
+		fill("0567", mas);
+	if (n == 'T' && o == 0)
+		fill("0126", mas);
+	if (n == 'T' && o == 2)
+		fill("1567", mas);
+	if (n == 'S' && o == 0)
+		fill("1256", mas);
+	if (n == 'Z' && o == 0)
+		fill("0167", mas);
+}
+
+void	get_coord_v(char n, int o, int **mas)
+{
+	if (n == 'L' && o == 0)
+		fill("05AB", mas);
+	if (n == 'J' && o == 0)
+		fill("16AB", mas);
+	if (n == 'L' && o == 2)
+		fill("016B", mas);
+	if (n == 'J' && o == 2)
+		fill("015A", mas);
+	if (n == 'T' && o == 1)
+		fill("156B", mas);
+	if (n == 'T' && o == 3)
+		fill("056A", mas);
+	if (n == 'S' && o == 1)
+		fill("056B", mas);
+	if (n == 'Z' && o == 1)
+		fill("156A", mas);
+}
+
+void	get_coord(char n, int o, int **mas)
+{
+	if (n == 'O')
+		fill("0156", mas);
+	if (n == 'I' && o == 0)
+		fill("05AF", mas);
+	if (n == 'I' && o == 1)
+		fill("0123", mas);
+	get_coord_v(n, o, mas);
+	get_coord_h(n, o, mas);
 }
 
 int		count_tetr(t_tr *list)
@@ -140,7 +135,7 @@ char	*map(t_tr *list, int s)
 	return (create_map(map_size));
 }
 
-int	check_and_place(t_tr *list, int *c, char **m, int i)//TODO запилить проверку на out of range
+int		check_and_place(t_tr *list, int *c, char **m, int i)
 {
 	size_t	size;
 
@@ -172,63 +167,67 @@ void	replace(int *c, char **m, int i)
 	(*m)[(c[3] / 5 * size) + (c[3] % 5) + i] = '.';
 }
 
-int main(int argc, char **argv)
+void	out_of_range(t_tr **list, int **c, char **m)
+{
+	if ((*list)->prev)
+	{
+		(*list)->i = 0;
+		(*list) = (*list)->prev;
+		get_coord((*list)->name, (*list)->o, c);
+		replace(*c, m, (*list)->i);
+		((*list)->i)++;
+	}
+	else
+	{
+		free(*m);
+		*m = map((*list)->head, (ft_strchr(*m, '\n') - *m + 1));
+		(*list) = (*list)->head;
+		while ((*list)->next && ((*list)->i = 0))
+			(*list) = (*list)->next;
+		(*list) = (*list)->head;
+		(*list)->i = 0;
+	}
+}
+
+char	*solve(char *m, t_tr *list)
+{
+	int *c;
+
+	m = map(list, 0);
+	c = (int*)ft_memalloc(sizeof(int) * 4);
+	while (list)
+	{
+		get_coord(list->name, list->o, &c);
+		if (check_and_place(list, c, &m, list->i))
+			list = list->next;
+		else if ((size_t)((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) +
+		(c[3] % 5)) + list->i > ft_strlen(m))
+			out_of_range(&list, &c, &m);
+		else
+			(list->i)++;
+	}
+	return (m);
+}
+
+int		main(int argc, char **argv)
 {
 	t_tr	*list;
-    int *c;
-    char *m;
+	char	*m;
 
 	list = 0;
 	if (argc == 2)
 	{
-		if(validate(argv[1]))
+		if (validate(argv[1]))
 			list = create_list(argv[1]);
 		else
 		{
 			printf("error\n");
 			return (0);
 		}
-		m = map(list, 0);
-        c = (int*)ft_memalloc(sizeof(int) * 4);
-		while(list)
-        {
-			get_coord(list->name, list->o, &c);
-			if (check_and_place(list, c, &m, list->i))
-				list = list->next;
-			else if ((size_t)((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) + (c[3] % 5)) + list->i > ft_strlen(m))
-			{
-				if (list->prev)
-				{
-					list->i = 0;
-					list = list->prev;
-					get_coord(list->name, list->o, &c);
-					replace(c, &m, list->i);
-					(list->i)++;
-				}
-				else
-				{
-					free(m);
-					m = map(list->head, (ft_strchr(m, '\n') - m + 1));
-					list = list->head;
-					while (list->next)
-					{
-						list->i = 0;
-						list = list->next;
-					}
-					list = list->head;
-					list->i = 0;
-				}
-			}
-			else
-				(list->i)++;
-		}
-		printf("%s\n\n", m);
-		// while (list)
-		// {
-		// 	printf("name:%c\n", list->name);
-		// 	printf("o:%d\n", list->o);
-		// 	list = list->next;
-		// }
+		m = solve(m, list);
+		ft_putstr(m);
+		ft_putchar('\n');
+		free(m);
 	}
 	return (0);
 }
