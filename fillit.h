@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:49:17 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 04:43:52 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/17 02:40:52 by ldonnis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 typedef struct	s_tr
 {
@@ -42,4 +42,14 @@ char			get_name_v(char *str, int *o);
 void			get_tetro(t_tr **list, t_tr **prev, char *buf, char *l);
 t_tr			*malloc_tetr(t_tr **prev);
 t_tr			*create_list(char *file);
+int				check_and_place(t_tr *list, int *c, char **m, int i);
+void			replace(int *c, char **m, int i);
+void			out_of_range(t_tr **list, int **c, char **m);
+char			*solve(char *m, t_tr *list);
+void			fill(char *str, int **c);
+void			get_coord_h(char n, int o, int **mas);
+void			get_coord_v(char n, int o, int **mas);
+void			get_coord(char n, int o, int **mas);
+char			*map(t_tr *list, int s);
+
 #endif

@@ -6,13 +6,13 @@
 #    By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/23 15:33:21 by ldonnis           #+#    #+#              #
-#    Updated: 2019/02/17 02:36:45 by fdaryn-h         ###   ########.fr        #
+#    Updated: 2019/02/17 02:44:58 by ldonnis          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 FLAG = -Wall -Wextra -Werror
-SRC = main.c fillit.c validate.c getters.c
+SRC = main.c fillit.c validate.c getters.c coords.c solver.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
