@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/17 02:41:18 by ldonnis          ###   ########.fr       */
+/*   Updated: 2019/02/17 02:58:19 by ldonnis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ int		main(int argc, char **argv)
 		ft_putstr(m);
 		ft_putchar('\n');
 		free(m);
+	}
+	else
+	{
+		ft_putstr("usage: ./fillit file\n");
+		return (1);
 	}
 	return (0);
 }
