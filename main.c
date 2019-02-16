@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 04:58:38 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 05:12:46 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int	check_and_place(t_tr *list, int *c, char **m, int i)//TODO запилить 
 		return (0);
 }
 
-void	replace(t_tr *list, int *c, char **m, int i)
+void	replace(int *c, char **m, int i)
 {
 	size_t	size;
 
@@ -198,13 +198,13 @@ int main(int argc, char **argv)
 			get_coord(list->name, list->o, &c);
 			if (check_and_place(list, c, &m, list->i))
 				list = list->next;
-			else if ((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) + (c[3] % 5) + list->i > ft_strlen(m))
+			else if ((size_t)((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) + (c[3] % 5)) + list->i > ft_strlen(m))
 			{
 				if (list->prev)
 				{
 					list = list->prev;
 					get_coord(list->name, list->o, &c);
-					replace(list, c, &m, list->i);
+					replace(c, &m, list->i);
 					(list->i)++;
 				}
 				else
