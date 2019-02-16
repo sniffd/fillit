@@ -6,32 +6,28 @@
 #    By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/23 15:33:21 by ldonnis           #+#    #+#              #
-#    Updated: 2019/02/16 15:11:13 by ldonnis          ###   ########.fr        #
+#    Updated: 2019/02/17 02:36:45 by fdaryn-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
 NAME = fillit
-FLAG = -Wall -Wextra -Werror -g -ggdb
+FLAG = -Wall -Wextra -Werror
 SRC = main.c fillit.c validate.c getters.c
 OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
 
 $(NAME):
 	make -C libft/ fclean && make -C libft/
 	gcc $(FLAG) -I libft/includes/ -c $(SRC)
 	gcc -o $(NAME) $(OBJ) -I libft/ -L libft/ -lft
 
-all: $(NAME)
-
 clean:
-	/bin/rm -f $(OBJ)
+	make -C libft/ clean
+	rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	make -C libft/ fclean
+	rm -f $(NAME)
 
 re:	fclean all
-
-%.o: %.c
-	$(CC) $(FLAG) -c $< -o $@
-
-.PHONY: all clean fclean re
