@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 05:12:46 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 05:14:46 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,21 +176,18 @@ int main(int argc, char **argv)
 {
 	t_tr	*list;
     int *c;
-    int j;
     char *m;
 
 	list = 0;
-	j = 0;
 	if (argc == 2)
 	{
 		if(validate(argv[1]))
-		{
-			printf("GOOD\n");
 			list = create_list(argv[1]);
+		else
+		{
+			printf("error\n");
+			return (0);
 		}
-		//else
-		//	printf("error\n");
-		//printf("map:\n%s\n\n", map(list));
 		m = map(list, 0);
         c = (int*)ft_memalloc(sizeof(int) * 4);
 		while(list && list->i < 100)
