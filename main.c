@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 06:08:00 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 06:13:47 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,6 @@ int main(int argc, char **argv)
 			}
 			else
 				(list->i)++;
-			printf("%s\n\n", m);
 		}
 		printf("%s\n\n", m);
 		// while (list)

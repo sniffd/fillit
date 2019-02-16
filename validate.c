@@ -95,6 +95,7 @@ static int	check_file(char **buf, int fd, ssize_t *ret, int *counter)
 		return (0);
 	}
 	*ret = read(fd, *buf, 21);
+	(*buf)[*ret] = '\0';
 	if (*ret)
 		(*counter)++;
 	if (*counter > 26)
