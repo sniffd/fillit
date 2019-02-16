@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 05:55:58 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/16 06:08:00 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ int main(int argc, char **argv)
 				else
 				{
 					free(m);
-					m = map(list->head, (ft_strchr(m, '\n') - m + 2));
+					m = map(list->head, (ft_strchr(m, '\n') - m + 1));
 					list = list->head;
 					while (list->next)
 					{
@@ -221,6 +221,7 @@ int main(int argc, char **argv)
 			}
 			else
 				(list->i)++;
+			printf("%s\n\n", m);
 		}
 		printf("%s\n\n", m);
 		// while (list)
