@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 18:04:29 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/16 00:06:37 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:54:32 by ldonnis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*fillit(char *m, t_tr *list)
 		if (check_and_place(list, c, &m, list->i))
 			list = list->next;
 		else if ((size_t)((c[3] / 5 * (ft_strchr(m, '\n') - m + 1)) +
-						  (c[3] % 5)) + list->i > ft_strlen(m))
+						(c[3] % 5)) + list->i > ft_strlen(m))
 			out_of_range(&list, &c, &m);
 		else
 			(list->i)++;
