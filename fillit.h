@@ -51,5 +51,6 @@ void			get_coord_h(char n, int o, int **mas);
 void			get_coord_v(char n, int o, int **mas);
 void			get_coord(char n, int o, int **mas);
 char			*map(t_tr *list, int s);
+void			free_list(t_tr **list);
 
 #endif

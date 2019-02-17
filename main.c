@@ -31,6 +31,7 @@ int		main(int argc, char **argv)
 		ft_putstr(m);
 		ft_putchar('\n');
 		free(m);
+		free_list(&list);
 	}
 	else
 	{

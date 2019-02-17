@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 02:29:07 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/17 02:59:13 by fdaryn-h         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:30:19 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ t_tr	*create_list(char *file)
 	while (read(fd, buf, 21))
 		get_tetro(&list, &prev, buf, &l);
 	return (list->head);
+}
+
+void	free_list(t_tr **list)
+{
+	while ((*list)->next)
+	{
+		(*list) = (*list)->next;
+		free((*list)->prev);
+	}
+	free(*list);
 }
