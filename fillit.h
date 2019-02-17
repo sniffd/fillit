@@ -6,7 +6,7 @@
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:49:17 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/17 02:40:52 by ldonnis          ###   ########.fr       */
+/*   Updated: 2019/02/17 02:59:13 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 typedef struct	s_tr
 {
@@ -45,7 +45,7 @@ t_tr			*create_list(char *file);
 int				check_and_place(t_tr *list, int *c, char **m, int i);
 void			replace(int *c, char **m, int i);
 void			out_of_range(t_tr **list, int **c, char **m);
-char			*solve(char *m, t_tr *list);
+char			*fillit(char *m, t_tr *list);
 void			fill(char *str, int **c);
 void			get_coord_h(char n, int o, int **mas);
 void			get_coord_v(char n, int o, int **mas);

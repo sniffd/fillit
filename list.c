@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldonnis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 16:23:42 by ldonnis           #+#    #+#             */
-/*   Updated: 2019/02/17 03:04:43 by fdaryn-h         ###   ########.fr       */
+/*   Created: 2019/02/17 02:29:07 by ldonnis           #+#    #+#             */
+/*   Updated: 2019/02/17 02:59:13 by fdaryn-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+t_tr	*malloc_tetr(t_tr **prev)
 {
 	t_tr	*list;
-	char	*m;
 
-	m = 0;
-	if (argc == 2)
-	{
-		if (validate(argv[1]))
-			list = create_list(argv[1]);
-		else
-		{
-			ft_putstr("error\n");
-			return (0);
-		}
-		m = fillit(m, list);
-		ft_putstr(m);
-		ft_putchar('\n');
-		free(m);
-	}
-	else
-	{
-		ft_putstr("usage: ./fillit file\n");
-		return (1);
-	}
-	return (0);
+	list = (t_tr *)ft_memalloc(sizeof(t_tr));
+	list->prev = *prev;
+	*prev = list;
+	return (list);
+}
+
+t_tr	*create_list(char *file)
+{
+	int		fd;
+	char	l;
+	char	buf[22];
+	t_tr	*list;
+	t_tr	*prev;
+
+	fd = open(file, O_RDONLY);
+	list = 0;
+	prev = 0;
+	l = 'A';
+	while (read(fd, buf, 21))
+		get_tetro(&list, &prev, buf, &l);
+	return (list->head);
 }
